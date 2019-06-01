@@ -12,12 +12,6 @@ export class GraphComponent implements OnInit {
 
   @Input('dataSource') dataSource: DataSource[];
 
-  getAnnee(data) {
-    this.dataSource.forEach(() => {
-      console.log(Annee);
-    });
-  }
-
   public lineChartData: ChartDataSets[] = [
     { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' }];
   public lineChartLabels: Label[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
