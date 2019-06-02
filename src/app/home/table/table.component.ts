@@ -13,6 +13,7 @@ export class TableComponent implements OnInit {
 
   @Input('dataSource') source: DataSource[];
   displayedColumns: string[] = ['Source', 'Date_collecte', 'Code_client', 'RS_client', 'Site', 'Type_collecte', 'Dechet', 'Quantite', 'Code_traitement', 'Annee', 'Mois'];
+  Code_client = ['ID1A', 'ID2C', 'ID1B', 'ID3C', 'ID2B'];
   dataSource = new MatTableDataSource();
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
@@ -23,7 +24,6 @@ export class TableComponent implements OnInit {
     this.dataSource.data = this.source;
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-    //console.log(parseFloat(this.dataSource.data[0].Quantite.replace(',', '.')));
   }
 
   applyFilter(filterValue: string) {

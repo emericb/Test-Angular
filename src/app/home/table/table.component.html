@@ -1,7 +1,17 @@
 <div class="container">
-  <mat-form-field>
+  <mat-form-field class="col-9">
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
   </mat-form-field>
+  <mat-form-field class="col-3">
+    <mat-select #select placeholder="Code client" (selectionChange)="applyFilter($event.value)">
+      <mat-option *ngFor="let code of Code_client" [value]="code">
+        {{code}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<div class="container">
 
   <table mat-table [dataSource]="dataSource" matSort>
 
