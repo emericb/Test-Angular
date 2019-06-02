@@ -3,7 +3,7 @@
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
   </mat-form-field>
   <mat-form-field class="col-3">
-    <mat-select #select placeholder="Code client" (selectionChange)="applyFilter($event.value)">
+    <mat-select placeholder="Code client" (selectionChange)="applyFilter($event.value)">
       <mat-option *ngFor="let code of Code_client" [value]="code">
         {{code}}
       </mat-option>
