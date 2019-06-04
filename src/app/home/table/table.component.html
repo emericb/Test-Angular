@@ -1,7 +1,9 @@
 <div class="container">
+  <!-- barre de recherche -->
   <mat-form-field class="col-9">
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
   </mat-form-field>
+  <!-- select code client -->
   <mat-form-field class="col-3">
     <mat-select placeholder="Code client" (selectionChange)="applyFilter($event.value)">
       <mat-option *ngFor="let code of Code_client" [value]="code">
@@ -85,6 +87,7 @@
     <tr mat-row *matRowDef="let element; columns: displayedColumns;"></tr>
   </table>
 
+  <!-- pagination -->
   <mat-paginator #paginator [pageSize]="15" [pageSizeOptions]="[5, 10, 20, 50, 100, 200, 500, 1000, 5000, 10000]"
                  showFirstLastButtons></mat-paginator>
 

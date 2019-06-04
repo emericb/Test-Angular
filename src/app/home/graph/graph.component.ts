@@ -76,7 +76,7 @@ export class GraphComponent implements OnInit {
   }
 
   //
-  // getYears() vérifie et additionne les quantités si la date précédente est identique (provisoire faute de mieux)
+  // getYears() vérifie et additionne les quantités si la date précédente est identique (provisoire)
   //
   getYears() {
     this.dataSource.forEach(element => {
