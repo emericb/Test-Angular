@@ -82,7 +82,7 @@ export class GraphComponent implements OnInit {
     this.dataSource.forEach(element => {
       element.Quantite = element.Quantite.replace(',', '.');
       if (element.Date_collecte === this.date[this.date.length - 1]) {
-        let replace = parseFloat(element.Quantite) + parseFloat(this.quantite[this.quantite.length - 1]);
+        const replace = parseFloat(element.Quantite) + parseFloat(this.quantite[this.quantite.length - 1]);
         this.quantite[this.quantite.length - 1] = replace;
       } else {
         this.quantite.push(element.Quantite);
