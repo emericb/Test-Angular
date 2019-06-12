@@ -14,7 +14,8 @@ export class TableComponent implements OnInit {
   @Input('dataSource') source: DataSource[];
   displayedColumns: string[] = ['Dechet', 'Date_collecte', 'Code_client', 'Quantite'];
   Code_client = ['ID1A', 'ID2C', 'ID1B', 'ID3C', 'ID2B'];
-  dataSorted = [];
+  //dechets = ['Canettes', 'Cartons', 'DIB BCG', 'Gobelets plastique', 'Palettes', 'Papiers mélangés', 'Bouteilles plastique', 'Piles et batteries', 'Capsules Nespresso', 'D3E', 'Cartouches', 'Ferraille', 'DIB Papiers', 'Ampoules', '2. PEHD', 'DIB', 'Verre', 'Gobelets carton', 'Bio déchet', 'Papiers confidentiels', 'DIB Cartons', 'Papiers blancs'];
+  dataSorted;
 
   dataSource = new MatTableDataSource();
 
@@ -28,27 +29,26 @@ export class TableComponent implements OnInit {
     this.dataSource.data = this.source;
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+    //this.dechets = this.dechets;
     this.dataSorted = this.typeSorter();
   }
 
   typeSorter() {
-      // const dechets = ['Canettes', 'Cartons', 'DIB BCG', 'Gobelets plastique', 'Palettes', 'Papiers mélangés', 'Bouteilles plastique', 'Piles et batteries', 'Capsules Nespresso', 'D3E', 'Cartouches', 'Ferraille', 'DIB Papiers', 'Ampoules', '2. PEHD', 'DIB', 'Verre', 'Gobelets carton', 'Bio déchet', 'Papiers confidentiels', 'DIB Cartons', 'Papiers blancs'];
-          const sortedMonth = [];
-          this.source.forEach(element => {
-              const month = element.Date_collecte.substring(3, 10);
-              if (!sortedMonth[month]) {
-                  sortedMonth[month] = [];
-              }
-              if (!sortedMonth[month][element.Dechet]) {
-                  sortedMonth[month][element.Dechet] = this.convertInt(element.Quantite);
-              } else {
-                  sortedMonth[month][element.Dechet] = sortedMonth[month][element.Dechet] + this.convertInt(element.Quantite);
-              }
-
-          });
-          console.log(sortedMonth);
-          return sortedMonth;
-      }
+      const sortedMonth = [];
+      this.source.forEach(element => {
+          const month = element.Date_collecte.substring(3, 10);
+          if (!sortedMonth[month]) {
+              sortedMonth[month] = {};
+          }
+          if (!sortedMonth[month][element.Dechet]) {
+              sortedMonth[month][element.Dechet] = this.convertInt(element.Quantite);
+          } else {
+              sortedMonth[month][element.Dechet] = sortedMonth[month][element.Dechet] + this.convertInt(element.Quantite);
+          }
+      });
+      console.log(sortedMonth);
+      return sortedMonth;
+  }
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
